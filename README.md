@@ -8,8 +8,6 @@ Marcela Diaz
 
 ---
 
-# Descripción objetiva
-
 ## ¿Qué es el proyecto?
 
 Este proyecto consiste en un sistema visual dinámico e interactivo desarrollado en p5.js. El sistema genera una composición geométrica inspirada en la Bauhaus y el diseño generativo.
