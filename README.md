@@ -1,8 +1,8 @@
 # SOLEMNE II — Pensamiento Computacional
 
-# Proyecto: Sistema Bauhaus Interactivo
+# Sistema Bauhaus Interactivo
 
-## Autor/a
+## Estudiante
 
 Marcela Diaz
 
@@ -71,7 +71,7 @@ El proyecto no busca copiar únicamente la estética Bauhaus, sino traducir sus 
 
 ---
 
-## Corriente o referente de diseño
+## Referente de diseño
 
 El proyecto dialoga principalmente con:
 
@@ -196,44 +196,53 @@ Los datos generan:
 
 # Código sketch.js
 
-```javascript
+```
+// variables
 let cols = 8;
 let rows = 8;
 let shapeType = 0;
 
 function setup() {
+
+  // crear lienzo
   createCanvas(500, 500);
+
+  // rectángulos dibujados desde el centro
   rectMode(CENTER);
 }
 
 function draw() {
 
+  // fondo
   background(240, 235, 220);
 
+  // tamaño de cada figura de la grilla
   let w = width / cols;
   let h = height / rows;
 
-  // bucle columnas
+  // for loop para recorrer columnas
   for (let i = 0; i < cols; i++) {
 
-    // bucle filas
+    // for loop para recorrer filas
     for (let j = 0; j < rows; j++) {
 
+      // posición de cada celda
       let x = i * w;
       let y = j * h;
 
+      // map convierte mouseX en tamaños variables
       let tam = map(mouseX, 0, width, 10, w);
 
-      // llamar función propia
+      // se ejecuta función propia
       dibujarFigura(x, y, w, h, tam, i, j);
     }
   }
 }
 
-// FUNCIÓN PROPIA
+// función propia
 function dibujarFigura(x, y, w, h, tam, i, j) {
 
-  // colores Bauhaus
+  // condicionales para alternar colores Bauhaus
   if ((i + j) % 3 === 0) {
 
     fill(255, 0, 0);
@@ -247,19 +256,22 @@ function dibujarFigura(x, y, w, h, tam, i, j) {
     fill(255, 204, 0);
   }
 
+  //líneas
   stroke(0);
   strokeWeight(4);
 
   push();
 
+  // mover origen al centro de cada celda
   translate(x + w / 2, y + h / 2);
 
-  // rotación según mouseY
+  // mouseY controla rotación del sistema
   rotate(mouseY * 0.01);
 
-  // composición cambia con click
+  // click cambia composición geométrica
   if (shapeType === 0) {
 
+    // alternancia entre círculo y cuadrado
     if ((i + j) % 2 === 0) {
 
       ellipse(0, 0, tam * 0.7);
@@ -271,6 +283,7 @@ function dibujarFigura(x, y, w, h, tam, i, j) {
 
   } else {
 
+    // segunda composición basada en triángulos
     triangle(
       0, -tam / 2,
       -tam / 2, tam / 2,
@@ -287,105 +300,11 @@ function dibujarFigura(x, y, w, h, tam, i, j) {
   }
 }
 
-// interacción click
+// interacción del usuario mediante click
 function mousePressed() {
 
+  // alterna entre composiciones
   shapeType = 1 - shapeType;
 }
-```
-
+`
 ---
-
-# Diagrama de flujo
-
-```text
-INICIO
-↓
-setup()
-↓
-createCanvas()
-↓
-draw()
-↓
-leer mouseX y mouseY
-↓
-map(mouseX)
-↓
-for columnas
-↓
-for filas
-↓
-llamar dibujarFigura()
-↓
-if colores
-↓
-if formas
-↓
-rotate(mouseY)
-↓
-dibujar figuras
-↓
-mostrar output visual
-↓
-mousePressed()
-↓
-cambiar composición
-↓
-FIN
-```
-
----
-
-# Qué poner en GitHub
-
-## Archivos mínimos
-
-* sketch.js
-* README.md
-* imagen del diagrama
-* archivo editable del diagrama
-* imágenes de referentes
-
----
-
-# Estructura recomendada del repositorio
-
-```text
-sistema-bauhaus/
-│
-├── sketch.js
-├── README.md
-├── diagrama.png
-├── diagrama.fig
-├── referentes/
-├── imagenes/
-```
-
----
-
-# Qué poner en p5.js
-
-Subir el código completo.
-
-Luego copiar:
-
-* Link editable
-* Link para ejecutar
-
-Y pegar ambos en el README.
-
----
-
-# Ideas para imágenes del README
-
-* Captura del sketch funcionando
-* Referentes Bauhaus
-* Diagrama de flujo
-* Proceso de pruebas
-* Bocetos
-
----
-
-# Explicación corta para presentar
-
-“Mi proyecto consiste en un sistema visual dinámico inspirado en la Bauhaus y el diseño generativo. Utilicé figuras geométricas básicas, colores primarios y una estructura modular basada en retículas. El sistema responde continuamente al movimiento del mouse mediante cambios de tamaño, rotación y composición. La idea fue traducir principios de diseño modernos a reglas computacionales usando p5.js.”
